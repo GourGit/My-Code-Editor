@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeEx Space</title>
     <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
-    
+
     <header>
         <div class="container row">
             <div class="brand">
@@ -16,6 +18,9 @@
             </div>
 
             <div class="row">
+                <!-- 🌗 Added theme toggle button -->
+                <button class="btn secondary" id="themeToggle" title="Toggle Theme">🌙</button>
+
                 <button class="btn secondary" id="saveBtn" title="Save Work Locally"><span>Save</span></button>
                 <button class="btn secondary" id="loadBtn" title="Load Work Locally"><span>Load</span></button>
                 <input id="openFile" type="file" accept="application/json" hidden>
@@ -26,19 +31,20 @@
     <main>
 
         <aside class="card stack panel">
-             <h2>Task / Assignment</h2>
+            <h2>Task / Assignment</h2>
 
-             <textarea id="assignment" class="text" placeholder="Write the task description here..."></textarea>
+            <textarea id="assignment" class="text" placeholder="Write the task description here..."></textarea>
 
-             <div class="stack">
+            <div class="stack">
                 <label for="testArea">Validation tests (JavaScript only - optional)</label>
-                <textarea id="testArea" class="text" placeholder="write simple tests to append after the students' code to check the solution."></textarea>
-             </div>
+                <textarea id="testArea" class="text"
+                    placeholder="write simple tests to append after the students' code to check the solution."></textarea>
+            </div>
 
-             <div class="muted">
+            <div class="muted">
                 Tip: <span class="kdb">Ctrl</span> + <span class="kdb">S</span> to save,
                 <span class="kdb">Ctrl</span> + <span class="kdb">Enter</span> to run.
-             </div>
+            </div>
         </aside>
 
         <section class="stack" id="web-only">
@@ -53,9 +59,11 @@
                 </div>
 
                 <div class="tabs" id="webTabs" role="tablist" aria-label="web editors">
-                    <button class="tab active" role="tab" aria-selected="true" tabindex="0" data-pane="html">HTML</button>
+                    <button class="tab active" role="tab" aria-selected="true" tabindex="0"
+                        data-pane="html">HTML</button>
                     <button class="tab" role="tab" aria-selected="false" tabindex="-1" data-pane="css">CSS</button>
-                    <button class="tab" role="tab" aria-selected="false" tabindex="-1" data-pane="js">JavaScript</button>
+                    <button class="tab" role="tab" aria-selected="false" tabindex="-1"
+                        data-pane="js">JavaScript</button>
                 </div>
 
                 <div class="editor-wrap" data-pane="html">
@@ -72,7 +80,8 @@
 
                 <div class="stack">
                     <h3>Preview</h3>
-                    <iframe id="preview" class="preview" sandbox="allow-scripts allow-same-origin allow-modals allow-forms"></iframe>
+                    <iframe id="preview" class="preview"
+                        sandbox="allow-scripts allow-same-origin allow-modals allow-forms"></iframe>
                 </div>
 
             </div>
@@ -96,9 +105,30 @@
 
     <div class="footer">&copy; 2025 CodieTech - All rights reserved.</div>
 
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.43.3/ace.js"></script>
     <script src="./script.js"></script>
 
+    <!-- 🌗 Theme toggle script -->
+    <script>
+        const toggle = document.getElementById("themeToggle");
+        const body = document.body;
+
+        // Load saved theme
+        if (localStorage.getItem("theme") === "light") {
+            body.classList.add("light");
+            toggle.textContent = "☀️";
+        } else {
+            toggle.textContent = "🌙";
+        }
+
+        toggle.addEventListener("click", () => {
+            body.classList.toggle("light");
+            const isLight = body.classList.contains("light");
+            toggle.textContent = isLight ? "☀️" : "🌙";
+            localStorage.setItem("theme", isLight ? "light" : "dark");
+        });
+    </script>
+
 </body>
+
 </html>

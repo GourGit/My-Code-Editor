@@ -12,6 +12,19 @@
     --border: #3c3c3c;
 }
 
+/* === Light Mode === */
+body.light {
+    --bg: #f3f3f3;
+    --bg-panel: #ffffff;
+    --bg-dark: #e6e6e6;
+    --text: #1e1e1e;
+    --accent: #007acc;
+    --accent-light: #005a9e;
+    --warn: #c586c0;
+    --err: #f44747;
+    --border: #cccccc;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -26,6 +39,7 @@ body {
     flex-direction: column;
     min-height: 100vh;
     font-size: 16px;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* === Header === */
@@ -33,6 +47,10 @@ header {
     background: var(--bg-panel);
     border-bottom: 1px solid var(--border);
     padding: 16px 28px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 .container.row {
@@ -52,8 +70,7 @@ header {
     height: 28px;
     background: var(--accent);
     border-radius: 4px;
-    background: url("https://discourse-user-assets.s3.amazonaws.com/original/2X/d/df30640741461569071875cf4ff6cad9924f8b32.png")
-              center / cover no-repeat;
+    background: url("https://discourse-user-assets.s3.amazonaws.com/original/2X/d/df30640741461569071875cf4ff6cad9924f8b32.png") center / cover no-repeat;
 }
 
 .title {
@@ -62,7 +79,7 @@ header {
     color: var(--accent-light);
 }
 
-/* === Buttons (Enhanced VS Code Style) === */
+/* === Buttons (VS Code Style) === */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -73,7 +90,6 @@ header {
     padding: 10px 22px;
     cursor: pointer;
     color: #ffffff;
-    letter-spacing: 0.3px;
     background: linear-gradient(145deg, #2a2a2a, #1c1c1c);
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4), inset 0 0 0 1px #3c3c3c;
     transition: all 0.2s ease;
@@ -142,6 +158,7 @@ main {
     border-radius: 12px;
     padding: 20px;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+    transition: background 0.3s ease;
 }
 
 .panel h2 {
@@ -152,44 +169,76 @@ main {
     padding-bottom: 6px;
 }
 
-/* === Editor & Tabs === */
+/* === Tabs (Refined VS Code Style) === */
 .tabs {
     display: flex;
-    gap: 8px;
-    margin-bottom: 12px;
+    gap: 0;
+    background: var(--bg-dark);
+    border-bottom: 1px solid var(--border);
+    border-radius: 8px 8px 0 0;
+    overflow: hidden;
 }
 
 .tab {
-    background: #2d2d2d;
-    color: #ccc;
-    padding: 8px 14px;
-    border-radius: 6px;
-    border: 1px solid var(--border);
-    cursor: pointer;
+    flex: 1;
+    text-align: center;
+    background: linear-gradient(180deg, #2b2b2b, #222);
+    color: #bbb;
+    padding: 10px 0;
     font-size: 15px;
+    border-right: 1px solid #333;
+    cursor: pointer;
     transition: all 0.2s ease;
+    position: relative;
+    font-weight: 500;
+}
+
+.tab:last-child {
+    border-right: none;
+}
+
+.tab:hover {
+    background: linear-gradient(180deg, #333, #262626);
+    color: var(--accent-light);
 }
 
 .tab.active {
     background: var(--accent);
     color: #fff;
+    box-shadow: 0 0 10px rgba(0, 122, 204, 0.6);
+    z-index: 1;
 }
 
-.tab:hover {
-    background: #333;
-    color: var(--accent-light);
+.tab.active::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--accent-light);
 }
 
+/* Editor container */
+.editor-wrap {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+/* === Editor === */
 .editor {
     height: 480px;
-    /* increased editor area */
     width: 100%;
     border-radius: 10px;
     overflow: hidden;
     font-size: 16px;
 }
 
-/* Ace editor font fix */
+/* Ace editor fix */
 .ace_editor {
     font-size: 16px !important;
 }
@@ -254,4 +303,25 @@ main {
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--accent);
+}
+
+/* === Textarea Styling === */
+textarea.text {
+    width: 100%;
+    background: var(--bg-dark);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px;
+    resize: vertical;
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    transition: all 0.2s ease;
+}
+
+textarea.text:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 8px rgba(0, 122, 204, 0.4);
+    outline: none;
 }
