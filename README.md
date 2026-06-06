@@ -2,10 +2,10 @@
 
 A lightweight, browser-based integrated development environment (IDE) built from scratch that allows users to write, compile, and preview HTML, CSS, and JavaScript code in real-time.
 
-![Project Preview](https://via.placeholder.com/800x450.png?text=Add+a+Screenshot+or+GIF+of+Your+App+Here) <!-- Optional: Add an actual screenshot link here later -->
+ <!-- Optional: Add an actual screenshot link here later -->
 
 ## 🔗 Links
-- **Live Demo:** [View Live Site](https://your-code-editor.netlify.app)
+- **Live Demo:** [View Live Site](https://gourgit.github.io/My-Code-Editor/)
 - **GitHub Repository:** [GitHub Repo](https://github.com/yourusername/web-code-editor)
 
 ## ✨ Features
